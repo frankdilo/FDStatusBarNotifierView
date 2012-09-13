@@ -34,7 +34,6 @@ Feel free to help out by sending pull requests or by creating new issues.
 
 - Add support for multiple orientations (currently only portrait is supported).
 - Add support for the iPad.
-- Option to dismiss the notifier view when the user tap it.
 
 # License
 
