@@ -16,13 +16,17 @@
 
 @implementation FDStatusBarNotifierView
 
-#define kNotifierViewInitialFramePortrait   CGRectMake(0, 20, 320, 20)
-#define kNotifierViewFinalFramePortrait     CGRectMake(0, 0, 320, 20)
-//#define kNotifierViewInitialFrameLandscape  CGRectMake(0, 20, 480, 20)
-//#define kNotifierViewFinalFrameLandscape    CGRectMake(0, 0, 480, 20)
-
-#define kMessageLabelInitialFramePortrait   CGRectMake(10, 0, 300, 20)
-#define kMessageLabelInitialFrameLandscape  CGRectMake(10, 0, 460, 20)
+#if (UI_USER_INTERFACE_IDIOM == UIUserInterfaceIdiomPad)
+    #define kNotifierViewInitialFramePortrait   CGRectMake(0, 20, 768, 20)
+    #define kNotifierViewFinalFramePortrait     CGRectMake(0, 0, 768, 20)
+    #define kMessageLabelInitialFramePortrait   CGRectMake(10, 0, 748, 20)
+    #define kMessageLabelInitialFrameLandscape  CGRectMake(10, 0, 1004, 20)
+#else
+    #define kNotifierViewInitialFramePortrait   CGRectMake(0, 20, 320, 20)
+    #define kNotifierViewFinalFramePortrait     CGRectMake(0, 0, 320, 20)
+    #define kMessageLabelInitialFramePortrait   CGRectMake(10, 0, 300, 20)
+    #define kMessageLabelInitialFrameLandscape  CGRectMake(10, 0, 460, 20)
+#endif
 
 - (id)init {
     self = [super init];

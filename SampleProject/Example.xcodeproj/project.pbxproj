@@ -16,6 +16,7 @@
 		0176092715F8D2C7007057D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092615F8D2C7007057D6 /* ViewController.m */; };
 		0176092A15F8D2C7007057D6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0176092815F8D2C7007057D6 /* ViewController.xib */; };
 		0176093215F8D2E6007057D6 /* FDStatusBarNotifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */; };
+		125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C477B16022C8900E43D08 /* ViewController_iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0176092915F8D2C7007057D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStatusBarNotifierView.h; sourceTree = "<group>"; };
 		0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStatusBarNotifierView.m; sourceTree = "<group>"; };
+		125C477C16022C8900E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				0176092515F8D2C7007057D6 /* ViewController.h */,
 				0176092615F8D2C7007057D6 /* ViewController.m */,
 				0176092815F8D2C7007057D6 /* ViewController.xib */,
+				125C477B16022C8900E43D08 /* ViewController_iPad.xib */,
 				0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */,
 				0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */,
 				0176091A15F8D2C7007057D6 /* Supporting Files */,
@@ -156,6 +159,7 @@
 			files = (
 				0176091E15F8D2C7007057D6 /* InfoPlist.strings in Resources */,
 				0176092A15F8D2C7007057D6 /* ViewController.xib in Resources */,
+				125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +194,14 @@
 				0176092915F8D2C7007057D6 /* en */,
 			);
 			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+		125C477B16022C8900E43D08 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				125C477C16022C8900E43D08 /* en */,
+			);
+			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -250,7 +262,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -261,7 +275,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
