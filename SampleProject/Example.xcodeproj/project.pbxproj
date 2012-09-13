@@ -14,9 +14,9 @@
 		0176092015F8D2C7007057D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176091F15F8D2C7007057D6 /* main.m */; };
 		0176092415F8D2C7007057D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092315F8D2C7007057D6 /* AppDelegate.m */; };
 		0176092715F8D2C7007057D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092615F8D2C7007057D6 /* ViewController.m */; };
-		0176092A15F8D2C7007057D6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0176092815F8D2C7007057D6 /* ViewController.xib */; };
 		0176093215F8D2E6007057D6 /* FDStatusBarNotifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */; };
 		125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C477B16022C8900E43D08 /* ViewController_iPad.xib */; };
+		125C478716024A0700E43D08 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C478516024A0700E43D08 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +32,10 @@
 		0176092315F8D2C7007057D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0176092515F8D2C7007057D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0176092615F8D2C7007057D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0176092915F8D2C7007057D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStatusBarNotifierView.h; sourceTree = "<group>"; };
 		0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStatusBarNotifierView.m; sourceTree = "<group>"; };
 		125C477C16022C8900E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		125C478616024A0700E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 				0176092315F8D2C7007057D6 /* AppDelegate.m */,
 				0176092515F8D2C7007057D6 /* ViewController.h */,
 				0176092615F8D2C7007057D6 /* ViewController.m */,
-				0176092815F8D2C7007057D6 /* ViewController.xib */,
+				125C478516024A0700E43D08 /* ViewController.xib */,
 				125C477B16022C8900E43D08 /* ViewController_iPad.xib */,
 				0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */,
 				0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */,
@@ -158,8 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0176091E15F8D2C7007057D6 /* InfoPlist.strings in Resources */,
-				0176092A15F8D2C7007057D6 /* ViewController.xib in Resources */,
 				125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */,
+				125C478716024A0700E43D08 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,20 +188,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		0176092815F8D2C7007057D6 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0176092915F8D2C7007057D6 /* en */,
-			);
-			name = ViewController.xib;
-			sourceTree = "<group>";
-		};
 		125C477B16022C8900E43D08 /* ViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				125C477C16022C8900E43D08 /* en */,
 			);
 			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		125C478516024A0700E43D08 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				125C478616024A0700E43D08 /* en */,
+			);
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
