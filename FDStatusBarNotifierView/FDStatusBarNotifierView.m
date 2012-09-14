@@ -102,29 +102,62 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [window insertSubview:self atIndex:0];
     
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
-        } completion:^(BOOL finished){
-            
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
-                [self.delegate didPresentNotifierView:self];
-            
-            [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
-            
-        }];
-    }
-    else {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, 20);
-        } completion:^(BOOL finished){
-            
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
-                [self.delegate didPresentNotifierView:self];
-            
-            [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
-            
-        }];
+    CGFloat textWith = [self.message sizeWithFont:self.messageLabel.font
+                                constrainedToSize:CGSizeMake(MAXFLOAT, 20)
+                                    lineBreakMode:self.messageLabel.lineBreakMode].width;
+    
+    if (textWith < self.frame.size.width) { // the message to display fits in the status bar view
+        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+            [UIView animateWithDuration:.4 animations:^{
+                self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
+            } completion:^(BOOL finished){
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                    [self.delegate didPresentNotifierView:self];
+                
+                [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
+                
+            }];
+        }
+        else {
+            [UIView animateWithDuration:.4 animations:^{
+                self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, 20);
+            } completion:^(BOOL finished){
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                    [self.delegate didPresentNotifierView:self];
+                
+                [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
+                
+            }];
+        }
+    } else {
+        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+            CGRect frame = self.messageLabel.frame;
+            CGFloat exceed = textWith - frame.size.width;
+            frame.size.width = textWith;
+            self.messageLabel.frame = frame;
+            NSTimeInterval timeExceed = exceed / 60;
+            [UIView animateWithDuration:.4 animations:^{
+                self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
+            } completion:^(BOOL finished){
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                    [self.delegate didPresentNotifierView:self];
+                
+                
+                [self performSelector:@selector(hide)
+                           withObject:nil
+                           afterDelay:self.timeOnScreen + timeExceed];
+                
+                [self performSelector:@selector(doTextScrollAnimation:)
+                           withObject:[NSNumber numberWithFloat:timeExceed]
+                           afterDelay:self.timeOnScreen / 3];
+                
+            }];
+        } else {
+            // add support for landscape
+        }
     }
 }
 
@@ -159,6 +192,22 @@
                 [self removeFromSuperview];
             }
         }];
+    }
+}
+
+- (void)doTextScrollAnimation:(NSNumber*)timeInterval
+{
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        __block CGRect frame = self.messageLabel.frame;
+        [UIView transitionWithView:self.messageLabel
+                          duration:timeInterval.floatValue
+                           options:UIViewAnimationCurveLinear
+                        animations:^{
+                            frame.origin.x = [UIScreen mainScreen].bounds.size.width - frame.size.width - frame.origin.x;
+                            self.messageLabel.frame = frame;
+                        } completion:nil];
+    } else {
+        // add support for landscape
     }
 }
 
