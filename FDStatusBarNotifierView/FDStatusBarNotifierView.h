@@ -13,7 +13,7 @@
 @interface FDStatusBarNotifierView : UIView
 
 @property (strong, nonatomic) NSString *message;
-@property (nonatomic) BOOL shouldHide;
+@property (nonatomic) BOOL shouldHideOnTap;
 @property NSTimeInterval timeOnScreen; // seconds, default: 2s
 @property id delegate;
 

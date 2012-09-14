@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013074A1160321D40097FAC2 /* FDStatusBarNotifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013074A0160321D40097FAC2 /* FDStatusBarNotifierView.m */; };
 		0176091415F8D2C7007057D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0176091315F8D2C7007057D6 /* UIKit.framework */; };
 		0176091615F8D2C7007057D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0176091515F8D2C7007057D6 /* Foundation.framework */; };
 		0176091815F8D2C7007057D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0176091715F8D2C7007057D6 /* CoreGraphics.framework */; };
@@ -14,12 +15,13 @@
 		0176092015F8D2C7007057D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176091F15F8D2C7007057D6 /* main.m */; };
 		0176092415F8D2C7007057D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092315F8D2C7007057D6 /* AppDelegate.m */; };
 		0176092715F8D2C7007057D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092615F8D2C7007057D6 /* ViewController.m */; };
-		0176093215F8D2E6007057D6 /* FDStatusBarNotifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */; };
 		125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C477B16022C8900E43D08 /* ViewController_iPad.xib */; };
 		125C478716024A0700E43D08 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C478516024A0700E43D08 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0130749F160321D40097FAC2 /* FDStatusBarNotifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStatusBarNotifierView.h; sourceTree = "<group>"; };
+		013074A0160321D40097FAC2 /* FDStatusBarNotifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStatusBarNotifierView.m; sourceTree = "<group>"; };
 		0176090F15F8D2C7007057D6 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0176091315F8D2C7007057D6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0176091515F8D2C7007057D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -32,8 +34,6 @@
 		0176092315F8D2C7007057D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0176092515F8D2C7007057D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0176092615F8D2C7007057D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStatusBarNotifierView.h; sourceTree = "<group>"; };
-		0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStatusBarNotifierView.m; sourceTree = "<group>"; };
 		125C477C16022C8900E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		125C478616024A0700E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +52,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0130749E160321D40097FAC2 /* FDStatusBarNotifierView */ = {
+			isa = PBXGroup;
+			children = (
+				0130749F160321D40097FAC2 /* FDStatusBarNotifierView.h */,
+				013074A0160321D40097FAC2 /* FDStatusBarNotifierView.m */,
+			);
+			name = FDStatusBarNotifierView;
+			path = ../../FDStatusBarNotifierView;
+			sourceTree = "<group>";
+		};
 		0176090415F8D2C7007057D6 = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +98,7 @@
 				0176092615F8D2C7007057D6 /* ViewController.m */,
 				125C478516024A0700E43D08 /* ViewController.xib */,
 				125C477B16022C8900E43D08 /* ViewController_iPad.xib */,
-				0176093015F8D2E6007057D6 /* FDStatusBarNotifierView.h */,
-				0176093115F8D2E6007057D6 /* FDStatusBarNotifierView.m */,
+				0130749E160321D40097FAC2 /* FDStatusBarNotifierView */,
 				0176091A15F8D2C7007057D6 /* Supporting Files */,
 			);
 			path = Example;
@@ -173,7 +182,7 @@
 				0176092015F8D2C7007057D6 /* main.m in Sources */,
 				0176092415F8D2C7007057D6 /* AppDelegate.m in Sources */,
 				0176092715F8D2C7007057D6 /* ViewController.m in Sources */,
-				0176093215F8D2E6007057D6 /* FDStatusBarNotifierView.m in Sources */,
+				013074A1160321D40097FAC2 /* FDStatusBarNotifierView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
