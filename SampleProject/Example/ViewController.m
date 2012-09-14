@@ -36,7 +36,6 @@
 - (IBAction)showMessage {
     NSString *text = self.messageField.text;
     FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
-    [notifierView setShouldHideOnTap:YES];
     notifierView.timeOnScreen = 3.0;
     [notifierView showInWindow:self.view.window];
 }
