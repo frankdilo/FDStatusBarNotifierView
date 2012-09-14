@@ -16,6 +16,12 @@ When you call `showInWindow:` the status bar disappear and the notifier view tak
 
 To use it just drag and drop `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, import the `.h` file in your view controller implementation and use the code shown in the example above.
 
+## More
+
+- If you set the `shouldHideOnTap` property to `YES` when the user touch the message it will be hidden.
+- If the message you want to display doesn’t fit in the status bar it will be animated and scroll horizontally to display the full text.
+
+
 ## Optional delegate methods
 
 I've also created some handy *self-explanatory* delegate methods, if you need them.
@@ -32,10 +38,12 @@ Feel free to help out by sending pull requests or by creating new issues.
 
 ## Contributors
 - [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
+- [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it is scrolled horizontally.
 
 ## TO DO 
 
 - Add support for multiple orientations (currently only portrait is supported).
+- Properly manage the animation queue, to avoid unexpected behavior when `showInWindow:` is called multiple times.
 
 # License
 
