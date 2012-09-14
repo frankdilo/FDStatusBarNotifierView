@@ -86,21 +86,64 @@
 - (void)showInWindow:(UIWindow *)window {
     if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentNotifierView:)])
         [self.delegate willPresentNotifierView:self];
-    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [window insertSubview:self atIndex:0];
+    //----------------scroll text------------
+    CGFloat textWith = [self.message sizeWithFont:self.messageLabel.font
+                                constrainedToSize:CGSizeMake(MAXFLOAT, 20)
+                                    lineBreakMode:self.messageLabel.lineBreakMode].width;
+    if (textWith < kMessageLabelInitialFramePortrait.size.width) {
+        [UIView animateWithDuration:.4 animations:^{
+            self.frame = kNotifierViewFinalFramePortrait;
+        } completion:^(BOOL finished){
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                [self.delegate didPresentNotifierView:self];
+            
+            [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
+            
+        }];
+    }else {
+        CGRect frame = kMessageLabelInitialFramePortrait;
+        CGFloat exceed = textWith - frame.size.width;
+        frame.size.width = textWith;
+        self.messageLabel.frame = frame;
+        NSTimeInterval timeExceed = exceed / 80;
+        [UIView animateWithDuration:.4 animations:^{
+            self.frame = kNotifierViewFinalFramePortrait;
+        } completion:^(BOOL finished){
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                [self.delegate didPresentNotifierView:self];
+            
+            
+            [self performSelector:@selector(hide)
+                       withObject:nil
+                       afterDelay:self.timeOnScreen + timeExceed];
+            
+            [self performSelector:@selector(doTextScrollAnimation:)
+                       withObject:[NSNumber numberWithFloat:timeExceed]
+                       afterDelay:self.timeOnScreen / 2];
+            
+        }];
+    }
+    //----------------end scroll text--------
     
-    [UIView animateWithDuration:.4 animations:^{
-        self.frame = kNotifierViewFinalFramePortrait;
-    } completion:^(BOOL finished){
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
-            [self.delegate didPresentNotifierView:self];
-        
-        [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
-        
-    }];
 }
+
+//----------------scroll text------------
+- (void)doTextScrollAnimation:(NSNumber*)timeInterval
+{
+    __block CGRect frame = self.messageLabel.frame;
+    [UIView transitionWithView:self.messageLabel
+                      duration:timeInterval.floatValue
+                       options:UIViewAnimationCurveLinear
+                    animations:^{
+                        frame.origin.x = kMessageLabelInitialFramePortrait.size.width - frame.size.width + kMessageLabelInitialFramePortrait.origin.x;
+                        self.messageLabel.frame = frame;
+                    } completion:nil];
+}
+//----------------end scroll text--------
 
 - (void)hide {
     
