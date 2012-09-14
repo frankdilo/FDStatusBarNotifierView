@@ -30,6 +30,9 @@ I've also created some handy *self-explanatory* delegate methods, if you need th
 
 Feel free to help out by sending pull requests or by creating new issues.
 
+## Contributors
+- [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
+
 ## TO DO 
 
 - Add support for multiple orientations (currently only portrait is supported).
