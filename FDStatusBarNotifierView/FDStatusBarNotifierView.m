@@ -34,6 +34,7 @@
         self.messageLabel.backgroundColor = [UIColor blackColor];
         self.messageLabel.textAlignment = UITextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.shouldHide = NO;
         [self addSubview:self.messageLabel];
         
         self.timeOnScreen = 2.0;
@@ -54,6 +55,7 @@
         self.messageLabel.backgroundColor = [UIColor blackColor];
         self.messageLabel.textAlignment = UITextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.shouldHide = NO;
         [self addSubview:self.messageLabel];
         
         self.timeOnScreen = 2.0;
@@ -122,6 +124,9 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if(self.shouldHide == TRUE) {
+        [self hide];
+    }
     [self.delegate notifierViewTapped:self];
 }
 
