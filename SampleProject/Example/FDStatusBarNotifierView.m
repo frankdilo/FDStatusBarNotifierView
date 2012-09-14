@@ -20,12 +20,10 @@
     self = [super init];
     if (self) {
         if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-            NSLog(@"Portrait");
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
             self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
         }
         else {
-            NSLog(@"Landscape");
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
             self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
         }
@@ -45,12 +43,10 @@
     self = [super init];
     if (self) {
         if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-            NSLog(@"Portrait");
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
             self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
         }
         else {
-            NSLog(@"Landscape");
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
             self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
         }
@@ -106,7 +102,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [window insertSubview:self atIndex:0];
     
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [UIView animateWithDuration:.4 animations:^{
             self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
         } completion:^(BOOL finished){
@@ -136,7 +132,7 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)])
         [self.delegate willHideNotifierView:self];
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         [UIView animateWithDuration:.4 animations:^{
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
@@ -167,7 +163,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.shouldHideOnTap == TRUE) {
+    if (self.shouldHideOnTap == TRUE) {
         [self hide];
     }
     [self.delegate notifierViewTapped:self];
