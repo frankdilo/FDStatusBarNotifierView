@@ -1,4 +1,4 @@
-**FDStatusBarNotifier** is a UIView subclass that let you display notifications using the space in which the status bar resides.
+**FDStatusBarNotifier** is a UIView subclass that lets you display notifications using the space in which the status bar resides.
 
 It’s as easy to use as `UIAlertView`, here is an example:
 

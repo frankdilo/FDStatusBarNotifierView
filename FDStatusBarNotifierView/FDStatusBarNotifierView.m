@@ -19,14 +19,18 @@
 - (id)init {
     self = [super init];
     if (self) {
-        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-        }
-        else {
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-        }
+        
+//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
+//
+//        }
+//        else {
+//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
+//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
+//        }
+        
+        self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
+        
         self.messageLabel.textColor = [UIColor whiteColor];
         self.messageLabel.backgroundColor = [UIColor blackColor];
         self.messageLabel.textAlignment = UITextAlignmentCenter;
@@ -42,14 +46,17 @@
 - (id)initWithMessage:(NSString *)message {
     self = [super init];
     if (self) {
-        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-        }
-        else {
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-        }
+//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
+//            
+//        }
+//        else {
+//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
+//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
+//        }
+        
+        self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
+
         self.message = message;
         self.backgroundColor = [UIColor blackColor];
         
@@ -70,16 +77,16 @@
 - (id)initWithMessage:(NSString *)message delegate:(id /*<StatusBarNotifierViewDelegate>*/)delegate {
     self = [super init];
     if (self) {
-        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-            NSLog(@"Portrait");
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-        }
-        else {
-            NSLog(@"Landscape");
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-        }
+//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
+//        }
+//        else {
+//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
+//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
+//        }
+        
+        self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
+        
         self.delegate = delegate;
         self.message = message;
         self.backgroundColor = [UIColor blackColor];
