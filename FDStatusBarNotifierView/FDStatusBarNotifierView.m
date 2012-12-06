@@ -114,7 +114,7 @@
                                     lineBreakMode:self.messageLabel.lineBreakMode].width;
     
     if (textWith < self.frame.size.width) { // the message to display fits in the status bar view
-        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
             [UIView animateWithDuration:.4 animations:^{
                 self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
             } completion:^(BOOL finished){
@@ -139,7 +139,7 @@
             }];
         }
     } else {
-        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
             CGRect frame = self.messageLabel.frame;
             CGFloat exceed = textWith - frame.size.width;
             frame.size.width = textWith;
@@ -172,7 +172,7 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)])
         [self.delegate willHideNotifierView:self];
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+    if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
         [UIView animateWithDuration:.4 animations:^{
             self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
@@ -204,7 +204,7 @@
 
 - (void)doTextScrollAnimation:(NSNumber*)timeInterval
 {
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+    if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
         __block CGRect frame = self.messageLabel.frame;
         [UIView transitionWithView:self.messageLabel
                           duration:timeInterval.floatValue
