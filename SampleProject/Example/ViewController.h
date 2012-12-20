@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FDStatusBarNotifierView.h"
 
-@interface ViewController : UIViewController <StatusBarNotifierViewDelegate>
+@interface ViewController : UIViewController <FDStatusBarNotifierViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *messageField;
 

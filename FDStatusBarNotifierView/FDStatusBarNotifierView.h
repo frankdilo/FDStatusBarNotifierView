@@ -26,7 +26,7 @@
 @end
 
 
-@protocol StatusBarNotifierViewDelegate <NSObject>
+@protocol FDStatusBarNotifierViewDelegate <NSObject>
 @optional
 
 - (void)willPresentNotifierView:(FDStatusBarNotifierView *)notifierView;  // before animation and showing view
