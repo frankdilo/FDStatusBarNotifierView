@@ -44,6 +44,7 @@ Feel free to help out by sending pull requests or by creating new issues.
 ## Contributors
 - [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
 - [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it will scroll horizontally.
+- [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support.
 
 ## TO DO 
 
