@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FDStatusBarNotifierViewDelegate;
 
 
 @interface FDStatusBarNotifierView : UIView
@@ -15,11 +16,11 @@
 @property (strong, nonatomic) NSString *message;
 @property (nonatomic) BOOL shouldHideOnTap;
 @property NSTimeInterval timeOnScreen; // seconds, default: 2s
-@property id delegate;
+@property id<FDStatusBarNotifierViewDelegate> delegate;
 
 
 - (id)initWithMessage:(NSString *)message;
-- (id)initWithMessage:(NSString *)message delegate:(id /*<StatusBarNotifierViewDelegate>*/)delegate;
+- (id)initWithMessage:(NSString *)message delegate:(id <FDStatusBarNotifierViewDelegate>)delegate;
 
 - (void)showInWindow:(UIWindow *)window;
 
