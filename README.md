@@ -16,6 +16,11 @@ When you call `showInWindow:` the status bar disappear and the notifier view tak
 
 To use it just drag and drop `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, import the `.h` file in your view controller implementation and use the code shown in the example above.
 
+## Cocoapods
+
+You can use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
+Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add `pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git'` to your *Podfile*.
+
 ## More
 
 - If you set the `shouldHideOnTap` property to `YES` when the user touch the message it will be hidden.
