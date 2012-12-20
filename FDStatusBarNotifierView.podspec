@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = "FDStatusBarNotifier is a UIView subclass that lets you display notifications using the space in which the status bar resides."
   s.homepage     = "https://github.com/frankdilo/FDStatusBarNotifierView"
   s.license      = { :type => 'MIT', :file => 'LICENSE'}
-  s.source       = { :git => "https://github.com/lukabernardi/FDStatusBarNotifierView.git" }
+  s.source       = { :git => "https://github.com/frankdilo/FDStatusBarNotifierView" }
   s.platform     = :ios, '5.0'
 
   s.source_files = 'FDStatusBarNotifierView/*.{h,m}'
