@@ -218,8 +218,9 @@
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.shouldHideOnTap == TRUE) {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldHideOnTap == YES) {
         [self hide];
     }
     [self.delegate notifierViewTapped:self];
