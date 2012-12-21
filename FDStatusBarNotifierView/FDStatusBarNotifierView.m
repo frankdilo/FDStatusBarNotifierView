@@ -16,19 +16,15 @@
 
 @implementation FDStatusBarNotifierView
 
-- (id)init {
+#pragma mark - Init
+
+- (id)init
+{
     self = [super init];
     if (self) {
-        
-//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-//
-//        }
-//        else {
-//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-//        }
-        
         self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+        self.backgroundColor = [UIColor blackColor];
+        
         self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
         
         self.messageLabel.textColor = [UIColor whiteColor];
@@ -43,66 +39,31 @@
     return self;
 }
 
-- (id)initWithMessage:(NSString *)message {
-    self = [super init];
+- (id)initWithMessage:(NSString *)message
+{
+    self = [self initWithMessage:message delegate:nil];
     if (self) {
-//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-//            
-//        }
-//        else {
-//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-//        }
         
-        self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-
-        self.message = message;
-        self.backgroundColor = [UIColor blackColor];
-        
-        self.messageLabel.textColor = [UIColor whiteColor];
-        self.messageLabel.text = message;
-        self.messageLabel.backgroundColor = [UIColor blackColor];
-        self.messageLabel.textAlignment = UITextAlignmentCenter;
-        self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
-        self.shouldHideOnTap = NO;
-        [self addSubview:self.messageLabel];
-        
-        self.timeOnScreen = 2.0;
     }
     return self;
     
 }
 
-- (id)initWithMessage:(NSString *)message delegate:(id /*<StatusBarNotifierViewDelegate>*/)delegate {
-    self = [super init];
+- (id)initWithMessage:(NSString *)message delegate:(id<FDStatusBarNotifierViewDelegate>)delegate
+{
+    self = [self init];
     if (self) {
-//        if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) || [[UIDevice currentDevice] orientation] == UIDeviceOrientationUnknown) {
-//        }
-//        else {
-//            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-//            self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.height - 20), 20)];
-//        }
-        
-        self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-        
-        self.delegate = delegate;
-        self.message = message;
-        self.backgroundColor = [UIColor blackColor];
-        
-        self.messageLabel.textColor = [UIColor whiteColor];
-        self.messageLabel.text = message;
-        self.messageLabel.backgroundColor = [UIColor blackColor];
-        self.messageLabel.textAlignment = UITextAlignmentCenter;
-        self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
-        [self addSubview:self.messageLabel];
-        self.timeOnScreen = 2.0;
+        self.delegate           = delegate;
+        self.message            = message;
+        self.messageLabel.text  = message;
     }
     return self;
 }
 
-- (void)showInWindow:(UIWindow *)window {
+#pragma mark - Presentation
+
+- (void)showInWindow:(UIWindow *)window
+{
     if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentNotifierView:)])
         [self.delegate willPresentNotifierView:self];
     
@@ -168,8 +129,8 @@
     }
 }
 
-- (void)hide {
-    
+- (void)hide
+{    
     if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)])
         [self.delegate willHideNotifierView:self];
     if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
@@ -218,14 +179,18 @@
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.shouldHideOnTap == TRUE) {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldHideOnTap == YES) {
         [self hide];
     }
     [self.delegate notifierViewTapped:self];
 }
 
-- (void)setMessage:(NSString *)message {
+#pragma mark - Accessor
+
+- (void)setMessage:(NSString *)message
+{
     _message = message;
     self.messageLabel.text = message;
 }
