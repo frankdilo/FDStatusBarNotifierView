@@ -8,11 +8,15 @@
 
 #import "FDStatusBarNotifierView.h"
 
+NSTimeInterval const kTimeOnScreenManuallyHide  = 0.0;
+NSTimeInterval const kTimeOnScreenDefault       = 2.0;
+
 @interface FDStatusBarNotifierView ()
 
-@property (strong) UILabel *messageLabel;
+@property (strong, nonatomic) UILabel *messageLabel;
 
 @end
+
 
 @implementation FDStatusBarNotifierView
 
@@ -34,7 +38,7 @@
         self.shouldHideOnTap = NO;
         [self addSubview:self.messageLabel];
         
-        self.timeOnScreen = 2.0;
+        self.timeOnScreen = kTimeOnScreenDefault;
     }
     return self;
 }
@@ -89,14 +93,18 @@
                              self.frame = animationDestinationFrame;
                          } completion:^(BOOL finished){
                              
-                             if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
+                             if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)]) {
                                  [self.delegate didPresentNotifierView:self];
+                             }
                              
-                             [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
-                                                              target:self
-                                                            selector:@selector(hide)
-                                                            userInfo:nil
-                                                             repeats:NO];
+                             if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                                 [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
+                                                                  target:self
+                                                                selector:@selector(hide)
+                                                                userInfo:nil
+                                                                 repeats:NO];
+                             }
+
                          }];
         
     } else {
@@ -113,14 +121,20 @@
                 if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
                     [self.delegate didPresentNotifierView:self];
                 
-                
-                [self performSelector:@selector(hide)
-                           withObject:nil
-                           afterDelay:self.timeOnScreen + timeExceed];
-                
-                [self performSelector:@selector(doTextScrollAnimation:)
-                           withObject:[NSNumber numberWithFloat:timeExceed]
-                           afterDelay:self.timeOnScreen / 3];
+                if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                    [self performSelector:@selector(hide)
+                               withObject:nil
+                               afterDelay:self.timeOnScreen + timeExceed];
+                    
+                    [self performSelector:@selector(doTextScrollAnimation:)
+                               withObject:[NSNumber numberWithFloat:timeExceed]
+                               afterDelay:self.timeOnScreen / 3];
+                } else {
+                    [self performSelector:@selector(doTextScrollAnimation:)
+                               withObject:[NSNumber numberWithFloat:timeExceed]
+                               afterDelay:kTimeOnScreenDefault / 3];
+                }
+
                 
             }];
         } else {
@@ -130,7 +144,11 @@
 }
 
 - (void)hide
-{    
+{
+    if (self.isHidden) {
+        return;
+    }
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)]) {
         [self.delegate willHideNotifierView:self];
     }
@@ -157,6 +175,11 @@
                              [self removeFromSuperview];
                          }
                      }];
+}
+
+- (BOOL)isHidden
+{
+    return (self.superview == nil);
 }
 
 - (void)doTextScrollAnimation:(NSNumber*)timeInterval

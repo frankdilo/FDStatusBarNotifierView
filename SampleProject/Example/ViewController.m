@@ -12,7 +12,10 @@
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    FDStatusBarNotifierView *_notifierView;
+}
+
 @synthesize messageField;
 
 - (void)viewDidLoad
@@ -33,11 +36,25 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (IBAction)showMessage {
+- (IBAction)showMessage
+{
     NSString *text = self.messageField.text;
+    
     FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
     notifierView.timeOnScreen = 3.0;
     [notifierView showInWindow:self.view.window];
+}
+
+- (IBAction)showMessageNoAutohide:(id)sender {
+    NSString *text = self.messageField.text;
+    
+    _notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
+    _notifierView.timeOnScreen = kTimeOnScreenManuallyHide;
+    [_notifierView showInWindow:self.view.window];
+}
+
+- (IBAction)hideButtonTapped:(id)sender {
+    [_notifierView hide];
 }
 
 // **Optional** StatusBarNotifierViewDelegate methods
