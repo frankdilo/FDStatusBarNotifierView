@@ -1,5 +1,19 @@
 **FDStatusBarNotifier** is a UIView subclass that lets you display notifications using the space in which the status bar resides.
 
+![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
+
+# Installation
+
+## Copy File
+To use it just drag and drop `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, import the `.h` file in your view controller implementation and use the code shown in the example above.
+
+## Cocoapods
+
+You can use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
+Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add `pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git'` to your *Podfile*.
+
+# Use
+
 It’s as easy to use as `UIAlertView`, here is an example:
 
 	// from a view controller
@@ -10,16 +24,9 @@ It’s as easy to use as `UIAlertView`, here is an example:
 
 When you call `showInWindow:` the status bar disappear and the notifier view takes its place with a smooth animation.
 
-![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
+## Manually hide
 
-# How to use it
-
-To use it just drag and drop `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, import the `.h` file in your view controller implementation and use the code shown in the example above.
-
-## Cocoapods
-
-You can use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
-Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add `pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git'` to your *Podfile*.
+If can specify a `timeOnScreen` that automatically hide the notifier. You also have the ability to manualy hide it (e.g., in case of you use it for network activity), to do so you have to set the `timeOnScreen = kTimeOnScreenManuallyHide` and when your done you call `- hide:`.
 
 ## More
 
