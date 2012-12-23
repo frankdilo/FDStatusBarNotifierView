@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageField;
 
 - (IBAction)showMessage;
+- (IBAction)showMessageNoAutohide:(id)sender;
+- (IBAction)hideButtonTapped:(id)sender;
+
 
 @end

@@ -10,12 +10,16 @@
 
 @protocol FDStatusBarNotifierViewDelegate;
 
+extern NSTimeInterval const kTimeOnScreenManuallyHide;
+extern NSTimeInterval const kTimeOnScreenDefault;
 
 @interface FDStatusBarNotifierView : UIView
 
 @property (strong, nonatomic) NSString *message;
-@property (nonatomic) BOOL shouldHideOnTap;
-@property NSTimeInterval timeOnScreen; // seconds, default: 2s
+@property (assign, nonatomic) BOOL shouldHideOnTap;
+@property (assign, nonatomic) NSTimeInterval timeOnScreen; // seconds, default: 2s
+@property (readonly, nonatomic) BOOL isHidden;
+
 @property id<FDStatusBarNotifierViewDelegate> delegate;
 
 
@@ -23,6 +27,7 @@
 - (id)initWithMessage:(NSString *)message delegate:(id <FDStatusBarNotifierViewDelegate>)delegate;
 
 - (void)showInWindow:(UIWindow *)window;
+- (void)hide;
 
 @end
 

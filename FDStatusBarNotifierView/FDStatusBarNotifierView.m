@@ -8,11 +8,15 @@
 
 #import "FDStatusBarNotifierView.h"
 
+NSTimeInterval const kTimeOnScreenManuallyHide  = 0.0;
+NSTimeInterval const kTimeOnScreenDefault       = 2.0;
+
 @interface FDStatusBarNotifierView ()
 
-@property (strong) UILabel *messageLabel;
+@property (strong, nonatomic) UILabel *messageLabel;
 
 @end
+
 
 @implementation FDStatusBarNotifierView
 
@@ -34,7 +38,7 @@
         self.shouldHideOnTap = NO;
         [self addSubview:self.messageLabel];
         
-        self.timeOnScreen = 2.0;
+        self.timeOnScreen = kTimeOnScreenDefault;
     }
     return self;
 }
@@ -64,8 +68,9 @@
 
 - (void)showInWindow:(UIWindow *)window
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentNotifierView:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentNotifierView:)]) {
         [self.delegate willPresentNotifierView:self];
+    }
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [window insertSubview:self atIndex:0];
@@ -75,30 +80,33 @@
                                     lineBreakMode:self.messageLabel.lineBreakMode].width;
     
     if (textWith < self.frame.size.width) { // the message to display fits in the status bar view
+        
+        CGRect animationDestinationFrame;
         if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
-            [UIView animateWithDuration:.4 animations:^{
-                self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
-            } completion:^(BOOL finished){
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
-                    [self.delegate didPresentNotifierView:self];
-                
-                [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
-                
-            }];
+            animationDestinationFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
+        } else {
+            animationDestinationFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, 20);
         }
-        else {
-            [UIView animateWithDuration:.4 animations:^{
-                self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, 20);
-            } completion:^(BOOL finished){
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
-                    [self.delegate didPresentNotifierView:self];
-                
-                [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen target:self selector:@selector(hide) userInfo:nil repeats:NO];
-                
-            }];
-        }
+        
+        [UIView animateWithDuration:.4
+                         animations:^{
+                             self.frame = animationDestinationFrame;
+                         } completion:^(BOOL finished){
+                             
+                             if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)]) {
+                                 [self.delegate didPresentNotifierView:self];
+                             }
+                             
+                             if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                                 [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
+                                                                  target:self
+                                                                selector:@selector(hide)
+                                                                userInfo:nil
+                                                                 repeats:NO];
+                             }
+
+                         }];
+        
     } else {
         if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
             CGRect frame = self.messageLabel.frame;
@@ -113,14 +121,20 @@
                 if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
                     [self.delegate didPresentNotifierView:self];
                 
-                
-                [self performSelector:@selector(hide)
-                           withObject:nil
-                           afterDelay:self.timeOnScreen + timeExceed];
-                
-                [self performSelector:@selector(doTextScrollAnimation:)
-                           withObject:[NSNumber numberWithFloat:timeExceed]
-                           afterDelay:self.timeOnScreen / 3];
+                if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                    [self performSelector:@selector(hide)
+                               withObject:nil
+                               afterDelay:self.timeOnScreen + timeExceed];
+                    
+                    [self performSelector:@selector(doTextScrollAnimation:)
+                               withObject:[NSNumber numberWithFloat:timeExceed]
+                               afterDelay:self.timeOnScreen / 3];
+                } else {
+                    [self performSelector:@selector(doTextScrollAnimation:)
+                               withObject:[NSNumber numberWithFloat:timeExceed]
+                               afterDelay:kTimeOnScreenDefault / 3];
+                }
+
                 
             }];
         } else {
@@ -130,37 +144,42 @@
 }
 
 - (void)hide
-{    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)])
+{
+    if (self.isHidden) {
+        return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)]) {
         [self.delegate willHideNotifierView:self];
+    }
+    
+    CGRect animationDestinationFrame;
     if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        } completion:^(BOOL finished){
-            if (finished) {
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)])
-                    [self.delegate didHideNotifierView:self];
-                
-                [self removeFromSuperview];
-            }
-        }];
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+    } else {
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
     }
-    else {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        } completion:^(BOOL finished){
-            if (finished) {
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)])
-                    [self.delegate didHideNotifierView:self];
-                
-                [self removeFromSuperview];
-            }
-        }];
-    }
+    
+    [UIView animateWithDuration:.4
+                     animations:^{
+                         self.frame = animationDestinationFrame;
+                         [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                 withAnimation:UIStatusBarAnimationSlide];
+                     } completion:^(BOOL finished){
+                         if (finished) {
+                             
+                             if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)]) {
+                                 [self.delegate didHideNotifierView:self];
+                             }
+                             
+                             [self removeFromSuperview];
+                         }
+                     }];
+}
+
+- (BOOL)isHidden
+{
+    return (self.superview == nil);
 }
 
 - (void)doTextScrollAnimation:(NSNumber*)timeInterval
