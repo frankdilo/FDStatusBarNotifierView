@@ -131,36 +131,32 @@
 
 - (void)hide
 {    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(willHideNotifierView:)]) {
         [self.delegate willHideNotifierView:self];
+    }
+    
+    CGRect animationDestinationFrame;
     if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        } completion:^(BOOL finished){
-            if (finished) {
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)])
-                    [self.delegate didHideNotifierView:self];
-                
-                [self removeFromSuperview];
-            }
-        }];
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+    } else {
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
     }
-    else {
-        [UIView animateWithDuration:.4 animations:^{
-            self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        } completion:^(BOOL finished){
-            if (finished) {
-                
-                if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)])
-                    [self.delegate didHideNotifierView:self];
-                
-                [self removeFromSuperview];
-            }
-        }];
-    }
+    
+    [UIView animateWithDuration:.4
+                     animations:^{
+                         self.frame = animationDestinationFrame;
+                         [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                                                 withAnimation:UIStatusBarAnimationSlide];
+                     } completion:^(BOOL finished){
+                         if (finished) {
+                             
+                             if (self.delegate && [self.delegate respondsToSelector:@selector(didHideNotifierView:)]) {
+                                 [self.delegate didHideNotifierView:self];
+                             }
+                             
+                             [self removeFromSuperview];
+                         }
+                     }];
 }
 
 - (void)doTextScrollAnimation:(NSNumber*)timeInterval
