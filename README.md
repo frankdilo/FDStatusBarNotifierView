@@ -26,7 +26,16 @@ When you call `showInWindow:` the status bar disappear and the notifier view tak
 
 ## Manually hide
 
-If can specify a `timeOnScreen` that automatically hide the notifier. You also have the ability to manualy hide it (e.g., in case of you use it for network activity), to do so you have to set the `timeOnScreen = kTimeOnScreenManuallyHide` and when your done you call `- hide:`.
+In some circumstances (e.g., informing the user of network activities), you may want to manually hide the component.
+
+To do so just set the `manuallyHide` property to `YES`. Then hide calling the `hide` method.
+
+    notifierView.manuallyHide = YES;
+    
+    // do some stuff
+    
+    [notifierView hide];
+
 
 ## More
 
@@ -51,7 +60,7 @@ Feel free to help out by sending pull requests or by creating new issues.
 ## Contributors
 - [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
 - [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it will scroll horizontally.
-- [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support.
+- [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support, manual hiding.
 
 ## TO DO 
 

@@ -49,7 +49,7 @@
     NSString *text = self.messageField.text;
     
     _notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
-    _notifierView.timeOnScreen = kTimeOnScreenManuallyHide;
+    _notifierView.manuallyHide = YES;
     [_notifierView showInWindow:self.view.window];
 }
 

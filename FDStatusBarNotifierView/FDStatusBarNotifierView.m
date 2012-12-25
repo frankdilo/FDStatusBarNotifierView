@@ -8,7 +8,6 @@
 
 #import "FDStatusBarNotifierView.h"
 
-NSTimeInterval const kTimeOnScreenManuallyHide  = 0.0;
 NSTimeInterval const kTimeOnScreenDefault       = 2.0;
 
 @interface FDStatusBarNotifierView ()
@@ -36,6 +35,7 @@ NSTimeInterval const kTimeOnScreenDefault       = 2.0;
         self.messageLabel.textAlignment = UITextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
         self.shouldHideOnTap = NO;
+        self.manuallyHide = NO;
         [self addSubview:self.messageLabel];
         
         self.timeOnScreen = kTimeOnScreenDefault;
@@ -97,7 +97,7 @@ NSTimeInterval const kTimeOnScreenDefault       = 2.0;
                                  [self.delegate didPresentNotifierView:self];
                              }
                              
-                             if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                             if (!self.manuallyHide) {
                                  [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
                                                                   target:self
                                                                 selector:@selector(hide)
@@ -121,7 +121,7 @@ NSTimeInterval const kTimeOnScreenDefault       = 2.0;
                 if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentNotifierView:)])
                     [self.delegate didPresentNotifierView:self];
                 
-                if (self.timeOnScreen != kTimeOnScreenManuallyHide) {
+                if (!self.manuallyHide) {
                     [self performSelector:@selector(hide)
                                withObject:nil
                                afterDelay:self.timeOnScreen + timeExceed];
