@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/frankdilo/FDStatusBarNotifierView"
   s.author 		 = { "Francesco Di Lorenzo" => "fradilorenzo92@gmail.com" }
   s.license      = { :type => 'MIT', :file => 'LICENSE'}
-  s.source       = { :git => "https://github.com/frankdilo/FDStatusBarNotifierView" }
+  s.source       = { :git => "https://github.com/frankdilo/FDStatusBarNotifierView.git", :tag => "v0.1.0" }
   s.platform     = :ios, '5.0'
 
   s.source_files = 'FDStatusBarNotifierView/*.{h,m}'
