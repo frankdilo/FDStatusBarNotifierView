@@ -2,15 +2,14 @@
 
 ![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
 
-# Installation
+# Install
 
-## Copy File
-To use it just drag and drop `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, import the `.h` file in your view controller implementation and use the code shown in the example above.
+Drag `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, then import the `.h` file where you want to use this component.
 
-## Cocoapods
+You can optionally use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
+Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add this line to your *Podfile*:
 
-You can use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
-Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add `pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git'` to your *Podfile*.
+    pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git
 
 # Use
 
