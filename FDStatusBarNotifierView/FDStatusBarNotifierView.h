@@ -10,7 +10,7 @@
 
 @protocol FDStatusBarNotifierViewDelegate;
 
-extern NSTimeInterval const kTimeOnScreenDefault;
+extern NSTimeInterval const kTimeOnScreen;
 
 @interface FDStatusBarNotifierView : UIView
 

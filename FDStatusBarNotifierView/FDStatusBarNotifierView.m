@@ -8,7 +8,7 @@
 
 #import "FDStatusBarNotifierView.h"
 
-NSTimeInterval const kTimeOnScreenDefault       = 2.0;
+NSTimeInterval const kTimeOnScreen = 2.0;
 
 @interface FDStatusBarNotifierView ()
 
@@ -32,13 +32,13 @@ NSTimeInterval const kTimeOnScreenDefault       = 2.0;
         
         self.messageLabel.textColor = [UIColor whiteColor];
         self.messageLabel.backgroundColor = [UIColor blackColor];
-        self.messageLabel.textAlignment = UITextAlignmentCenter;
+        self.messageLabel.textAlignment = NSTextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
         self.shouldHideOnTap = NO;
         self.manuallyHide = NO;
         [self addSubview:self.messageLabel];
         
-        self.timeOnScreen = kTimeOnScreenDefault;
+        self.timeOnScreen = kTimeOnScreen;
     }
     return self;
 }
@@ -132,7 +132,7 @@ NSTimeInterval const kTimeOnScreenDefault       = 2.0;
                 } else {
                     [self performSelector:@selector(doTextScrollAnimation:)
                                withObject:[NSNumber numberWithFloat:timeExceed]
-                               afterDelay:kTimeOnScreenDefault / 3];
+                               afterDelay:kTimeOnScreen / 3];
                 }
 
                 
