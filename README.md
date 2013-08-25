@@ -1,31 +1,36 @@
-**FDStatusBarNotifier** is a UIView subclass that lets you display notifications using the space in which the status bar resides.
+**FDStatusBarNotifier** is an UIView subclass that lets you display notifications using the space in which the status bar resides.
 
 ![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
 
-# Install
-
-Drag `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project, then import the `.h` file where you want to use this component.
-
-You can optionally use [CocoaPods](http://cocoapods.org) to manage your dependencies and install *FDStatusBarNotifierView*.
-Follow the instructions on the CocoaPods site to [install the gem](https://github.com/CocoaPods/CocoaPods#installation) and add this line to your *Podfile*:
-
-    pod 'FDStatusBarNotifierView', :git => 'https://github.com/frankdilo/FDStatusBarNotifierView.git
-
-# Use
+# Usage
 
 It’s as easy to use as `UIAlertView`, here is an example:
 
 	// from a view controller
 	FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:@"Hi"];
-	notifierView.timeOnScreen = 3.0;
+	notifierView.timeOnScreen = 3.0; // by default it's 2 seconds
 	[notifierView showInWindow:self.view.window];
 
 
 When you call `showInWindow:` the status bar disappear and the notifier view takes its place with a smooth animation.
 
+# Installation
+
+The easiest way to install this component is via [CocoaPods](http://cocoapods.org/).
+
+Add the following line to your `podfile`:
+
+	pod 'FDStatusBarNotifierView'
+
+Then run the `pod install` command and import `FDStatusBarNotifierView.h` where you plan to use the notifier view.
+
+You can also install this manually. Just drag `FDStatusBarNotifierView.h` and `FDStatusBarNotifierView.m` in your project and import the `.h` file where you want to use this component.
+
+# Advanced usage
+
 ## Manually hide
 
-In some circumstances (e.g., informing the user of network activities), you may want to manually hide the component.
+In some circumstances (e.g. informing the user of network activities), you may want to manually hide the component.
 
 To do so just set the `manuallyHide` property to `YES`. Then hide calling the `hide` method.
 
@@ -36,13 +41,15 @@ To do so just set the `manuallyHide` property to `YES`. Then hide calling the `h
     [notifierView hide];
 
 
-## More
+## Hide on tap
 
-- If you set the `shouldHideOnTap` property to `YES` when the user touch the message it will be hidden.
-- If the message you want to display doesn’t fit in the status bar it will be animated and scroll horizontally to display the full text.
+If you set the `shouldHideOnTap` property to `YES` when the user taps the message it will be hidden.
 
+## Scrolling message
 
-## Optional delegate methods
+If the message you want to display doesn’t fit in the status bar it will be animated and scroll horizontally to display the full text.
+
+## Delegate methods
 
 I've also created some handy *self-explanatory* delegate methods, if you need them.
 
@@ -56,24 +63,16 @@ I've also created some handy *self-explanatory* delegate methods, if you need th
 
 Feel free to help out by sending pull requests or by creating new issues.
 
-## Contributors
-- [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
-- [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it will scroll horizontally.
-- [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support, manual hiding.
-
 ## TO DO 
 
 - Add support for multiple orientations (currently only portrait is supported).
 - Properly manage the animation queue, to avoid unexpected behavior when `showInWindow:` is called multiple times.
 
+## Contributors
+- [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
+- [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it will scroll horizontally.
+- [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support, manual hiding.
+
 # License
 
-## MIT License
-
-Copyright (c) 2012 Francesco Di Lorenzo
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+See the LICENSE file (MIT).
