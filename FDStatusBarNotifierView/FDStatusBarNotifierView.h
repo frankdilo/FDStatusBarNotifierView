@@ -27,6 +27,7 @@ extern NSTimeInterval const kTimeOnScreen;
 - (id)initWithMessage:(NSString *)message delegate:(id <FDStatusBarNotifierViewDelegate>)delegate;
 
 - (void)showInWindow:(UIWindow *)window;
+- (void)showAboveNavigationController:(UINavigationController *)navigationController;
 - (void)hide;
 
 @end
