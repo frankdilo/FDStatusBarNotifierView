@@ -10,7 +10,7 @@
 
 @protocol FDStatusBarNotifierViewDelegate;
 
-extern NSTimeInterval const kTimeOnScreenDefault;
+extern NSTimeInterval const kTimeOnScreen;
 
 @interface FDStatusBarNotifierView : UIView
 
@@ -27,7 +27,6 @@ extern NSTimeInterval const kTimeOnScreenDefault;
 - (id)initWithMessage:(NSString *)message delegate:(id <FDStatusBarNotifierViewDelegate>)delegate;
 
 - (void)showInWindow:(UIWindow *)window;
-- (void)showAboveNavigationController:(UINavigationController *)navigationController;
 - (void)hide;
 
 @end

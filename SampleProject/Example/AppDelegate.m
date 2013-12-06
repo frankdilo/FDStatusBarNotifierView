@@ -14,6 +14,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    
+    NSString *currentDeviceModel = [[UIDevice currentDevice] model];
+    
+    // Necessary, to make this work also on the simulator
+    BOOL iPhoneORiPod = ([currentDeviceModel rangeOfString:@"iPhone"].location != NSNotFound || [currentDeviceModel rangeOfString:@"iPod touch"].location != NSNotFound);
+    
+    if (iPhoneORiPod)
+        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    else
+        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
+                                                                                   
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
