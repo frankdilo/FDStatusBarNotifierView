@@ -16,33 +16,18 @@
     FDStatusBarNotifierView *_notifierView;
 }
 
-@synthesize messageField;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)viewDidUnload
-{
-    [self setMessageField:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (IBAction)showMessage
 {
     NSString *text = self.messageField.text;
     
-    FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
+    FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text];
     notifierView.timeOnScreen = 3.0;
-    [notifierView showInWindow:self.view.window];
+    [notifierView showAboveNavigationController:self.navigationController];
 }
 
 - (IBAction)showMessageNoAutohide:(id)sender {
@@ -50,7 +35,7 @@
     
     _notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:text delegate:self];
     _notifierView.manuallyHide = YES;
-    [_notifierView showInWindow:self.view.window];
+    [_notifierView showAboveNavigationController:self.navigationController];
 }
 
 - (IBAction)hideButtonTapped:(id)sender {
