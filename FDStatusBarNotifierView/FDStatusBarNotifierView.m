@@ -25,20 +25,25 @@ NSTimeInterval const kTimeOnScreen = 2.0;
 {
     self = [super init];
     if (self) {
+        self.clipsToBounds = YES;
         self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
-        self.backgroundColor = [UIColor blackColor];
         
         self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ([UIScreen mainScreen].bounds.size.width - 20), 20)];
-        
-        self.messageLabel.textColor = [UIColor whiteColor];
-        self.messageLabel.backgroundColor = [UIColor blackColor];
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            self.messageLabel.backgroundColor = [UIColor clearColor];
+            self.messageLabel.textColor = [UIColor whiteColor];
+        }else{
+            // we might have to us white if the prefered statusbar style is UIStatusBarStyleLightContent
+            self.messageLabel.textColor = [UIColor blackColor];
+        }
         self.messageLabel.textAlignment = NSTextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.shouldHideOnTap = NO;
         self.manuallyHide = NO;
         [self addSubview:self.messageLabel];
         
-        self.timeOnScreen = kTimeOnScreen;
+        self.timeOnScreen = kTimeOnScreenDefault;
     }
     return self;
 }
@@ -73,13 +78,27 @@ NSTimeInterval const kTimeOnScreen = 2.0;
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    [window insertSubview:self atIndex:0];
+    [window addSubview:self];
     
-    CGFloat textWith = [self.message sizeWithFont:self.messageLabel.font
-                                constrainedToSize:CGSizeMake(MAXFLOAT, 20)
-                                    lineBreakMode:self.messageLabel.lineBreakMode].width;
+    NSDictionary *attributes = @{NSFontAttributeName:self.messageLabel.font};
+    CGFloat textWith = 0;
     
-    if (textWith < self.frame.size.width) { // the message to display fits in the status bar view
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        textWith = [self.message sizeWithFont:self.messageLabel.font
+                            constrainedToSize:CGSizeMake(MAXFLOAT, 20)
+                                lineBreakMode:self.messageLabel.lineBreakMode].width;
+    } else {
+        // Load resources for iOS 7 or later
+        CGRect textSize = [self.message boundingRectWithSize:CGSizeMake(MAXFLOAT, 20)
+                                                     options:NSStringDrawingUsesFontLeading
+                                                  attributes:attributes
+                                                     context:nil];
+        
+        textWith = textSize.size.width;
+    }
+    
+    if (textWith < self.messageLabel.frame.size.width) { // the message to display fits in the status bar view
         
         CGRect animationDestinationFrame;
         if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
@@ -88,6 +107,9 @@ NSTimeInterval const kTimeOnScreen = 2.0;
             animationDestinationFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, 20);
         }
         
+        CGRect animationStartFrame = self.frame;
+        animationStartFrame.size.height = 0;
+        self.frame = animationStartFrame;
         [UIView animateWithDuration:.4
                          animations:^{
                              self.frame = animationDestinationFrame;
@@ -143,6 +165,29 @@ NSTimeInterval const kTimeOnScreen = 2.0;
     }
 }
 
+- (void)showAboveNavigationController:(UINavigationController *)navigationController
+{
+    CGRect frame = navigationController.navigationBar.frame;
+
+    UIViewController *firstViewController = [navigationController.viewControllers firstObject];
+    CGRect viewFrame = firstViewController.view.frame;
+    [self showInWindow:firstViewController.view.window];
+    firstViewController.view.frame = viewFrame;
+    
+    navigationController.navigationBar.frame = frame;
+    frame.size.height += frame.origin.y;
+    frame.origin.y = -frame.origin.y;
+    for (UIView *view in navigationController.navigationBar.subviews) {
+        if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+            for (UIView *view2 in view.subviews) {
+                if (![view2 isKindOfClass:[UIImageView class]]) {
+                    view2.frame = frame;
+                }
+            }
+        }
+    }
+}
+
 - (void)hide
 {
     if (self.isHidden) {
@@ -155,9 +200,9 @@ NSTimeInterval const kTimeOnScreen = 2.0;
     
     CGRect animationDestinationFrame;
     if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait) {
-        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 0);
     } else {
-        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 20);
+        animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 0);
     }
     
     [UIView animateWithDuration:.4
