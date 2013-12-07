@@ -109,7 +109,9 @@ NSTimeInterval const kTimeOnScreen = 2.0;
         }
         
         CGRect animationStartFrame = self.frame;
-        animationStartFrame.size.height = 0;
+        if (CGRectGetMinY(animationStartFrame) > 0) {
+            animationStartFrame.size.height = 0;
+        }
         self.frame = animationStartFrame;
         [UIView animateWithDuration:.4
                          animations:^{
