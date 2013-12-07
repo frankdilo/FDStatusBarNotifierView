@@ -12,7 +12,8 @@ NSTimeInterval const kTimeOnScreen = 2.0;
 
 @interface FDStatusBarNotifierView ()
 
-@property (strong, nonatomic) UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) NSTimer *showStatusBarTimer;
 
 @end
 
@@ -120,11 +121,12 @@ NSTimeInterval const kTimeOnScreen = 2.0;
                              }
                              
                              if (!self.manuallyHide) {
-                                 [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
-                                                                  target:self
-                                                                selector:@selector(hide)
-                                                                userInfo:nil
-                                                                 repeats:NO];
+                                 [self.showStatusBarTimer invalidate];
+                                 self.showStatusBarTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeOnScreen
+                                                                                            target:self
+                                                                                          selector:@selector(hide)
+                                                                                          userInfo:nil
+                                                                                           repeats:NO];
                              }
 
                          }];
