@@ -235,7 +235,7 @@ NSTimeInterval const kTimeOnScreen = 2.0;
         __block CGRect frame = self.messageLabel.frame;
         [UIView transitionWithView:self.messageLabel
                           duration:timeInterval.floatValue
-                           options:UIViewAnimationCurveLinear
+                           options:UIViewAnimationOptionCurveLinear
                         animations:^{
                             frame.origin.x = [UIScreen mainScreen].bounds.size.width - frame.size.width - frame.origin.x;
                             self.messageLabel.frame = frame;
