@@ -1,4 +1,4 @@
-**FDStatusBarNotifier** is an UIView subclass that lets you display notifications using the space in which the status bar resides.
+**FDStatusBarNotifierView** is a view that lets you display notifications and messages using the space in which the status bar resides.
 
 ![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
 
@@ -7,7 +7,7 @@
 It’s as easy to use as `UIAlertView`, here is an example:
 
 	// from a view controller
-	FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:@"Hi"];
+	FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:@"Hello!"];
 	notifierView.timeOnScreen = 3.0; // by default it's 2 seconds
 	[notifierView showInWindow:self.view.window];
 
@@ -72,6 +72,7 @@ Feel free to help out by sending pull requests or by creating new issues.
 - [ZachOrr](https://github.com/ZachOrr): iPad support, hide on tap, better handling of device’s screen sizes.
 - [dbsGen](https://github.com/dbsGen): if the message to display doesn’t fit in the status bar, it will scroll horizontally.
 - [Luca Bernardi](https://github.com/lukabernardi): CocoaPods support, manual hiding.
+- [Stephen Williams](https://github.com/onato): iOS 7 support and more
 
 # License
 
