@@ -44,7 +44,7 @@ NSTimeInterval const kTimeOnScreen = 2.0;
         self.manuallyHide = NO;
         [self addSubview:self.messageLabel];
         
-        self.timeOnScreen = kTimeOnScreenDefault;
+        self.timeOnScreen = kTimeOnScreen;
     }
     return self;
 }
