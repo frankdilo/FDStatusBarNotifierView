@@ -172,20 +172,24 @@ NSTimeInterval const kTimeOnScreen = 2.0;
 - (void)showAboveNavigationController:(UINavigationController *)navigationController
 {
     CGRect frame = navigationController.navigationBar.frame;
-
-    UIViewController *firstViewController = [navigationController.viewControllers firstObject];
-    CGRect viewFrame = firstViewController.view.frame;
-    [self showInWindow:firstViewController.view.window];
-    firstViewController.view.frame = viewFrame;
+    UIViewController *lastViewController = [navigationController.viewControllers lastObject];
+    CGRect viewFrame = lastViewController.view.frame;
     
-    navigationController.navigationBar.frame = frame;
-    frame.size.height += frame.origin.y;
-    frame.origin.y = -frame.origin.y;
-    for (UIView *view in navigationController.navigationBar.subviews) {
-        if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
-            for (UIView *view2 in view.subviews) {
-                if (![view2 isKindOfClass:[UIImageView class]]) {
-                    view2.frame = frame;
+    if (!lastViewController.view.window) {
+        [self performSelector:@selector(showAboveNavigationController:) withObject:navigationController afterDelay:0.2];// the view has not appeared yet.
+    }else{
+        [self showInWindow:navigationController.view.window];
+        lastViewController.view.frame = viewFrame;
+        
+        navigationController.navigationBar.frame = frame;
+        frame.size.height += frame.origin.y;
+        frame.origin.y = -frame.origin.y;
+        for (UIView *view in navigationController.navigationBar.subviews) {
+            if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+                for (UIView *view2 in view.subviews) {
+                    if (![view2 isKindOfClass:[UIImageView class]]) {
+                        view2.frame = frame;
+                    }
                 }
             }
         }
