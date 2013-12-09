@@ -209,11 +209,11 @@ NSTimeInterval const kTimeOnScreen = 2.0;
         animationDestinationFrame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.height, 0);
     }
     
+    [[UIApplication sharedApplication] setStatusBarHidden:NO
+                                            withAnimation:UIStatusBarAnimationSlide];
     [UIView animateWithDuration:.4
                      animations:^{
                          self.frame = animationDestinationFrame;
-                         [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                                                 withAnimation:UIStatusBarAnimationSlide];
                      } completion:^(BOOL finished){
                          if (finished) {
                              
