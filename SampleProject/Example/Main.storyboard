@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Status Bar Message-->
+        <!--View Controller - Sample-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -17,14 +17,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-RJ-50d">
-                                <rect key="frame" x="20" y="81" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello, GitHub!" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-RJ-50d">
+                                <rect key="frame" x="20" y="44" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZm-K9-HSe">
-                                <rect key="frame" x="24" y="119" width="276" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZm-K9-HSe">
+                                <rect key="frame" x="22" y="82" width="276" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Show message">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,18 +33,18 @@
                                     <action selector="showMessage" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xyR-AH-rpW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StN-lr-lAk">
-                                <rect key="frame" x="24" y="202" width="276" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StN-lr-lAk">
+                                <rect key="frame" x="22" y="132" width="276" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show with NO autohide">
+                                <state key="normal" title="Show (without autohide)">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showMessageNoAutohide:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lew-3d-KqO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-9C-09h">
-                                <rect key="frame" x="24" y="240" width="276" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaJ-9C-09h">
+                                <rect key="frame" x="22" y="160" width="276" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Hide">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,23 +56,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="StN-lr-lAk" firstAttribute="top" secondItem="aZm-K9-HSe" secondAttribute="bottom" constant="53" id="7Rs-fs-BBA"/>
-                            <constraint firstItem="Obz-RJ-50d" firstAttribute="top" secondItem="obs-Ot-J6O" secondAttribute="bottom" constant="17" id="BHd-TH-JDc"/>
-                            <constraint firstAttribute="trailing" secondItem="aZm-K9-HSe" secondAttribute="trailing" constant="20" id="Bmg-h4-ooO"/>
+                            <constraint firstItem="StN-lr-lAk" firstAttribute="top" secondItem="aZm-K9-HSe" secondAttribute="bottom" constant="20" id="7Rs-fs-BBA"/>
+                            <constraint firstItem="Obz-RJ-50d" firstAttribute="top" secondItem="obs-Ot-J6O" secondAttribute="bottom" constant="44" id="BHd-TH-JDc"/>
+                            <constraint firstAttribute="trailing" secondItem="aZm-K9-HSe" secondAttribute="trailing" constant="22" id="Bmg-h4-ooO"/>
                             <constraint firstItem="aZm-K9-HSe" firstAttribute="top" secondItem="Obz-RJ-50d" secondAttribute="bottom" constant="8" id="D7R-Fz-S0R"/>
-                            <constraint firstAttribute="trailing" secondItem="IaJ-9C-09h" secondAttribute="trailing" constant="20" id="JuO-qg-cX0"/>
+                            <constraint firstAttribute="trailing" secondItem="IaJ-9C-09h" secondAttribute="trailing" constant="22" id="JuO-qg-cX0"/>
                             <constraint firstAttribute="trailing" secondItem="Obz-RJ-50d" secondAttribute="trailing" constant="20" id="TEB-UP-wEj"/>
-                            <constraint firstItem="IaJ-9C-09h" firstAttribute="top" secondItem="StN-lr-lAk" secondAttribute="bottom" constant="8" symbolic="YES" id="VcW-xe-CF8"/>
-                            <constraint firstAttribute="trailing" secondItem="StN-lr-lAk" secondAttribute="trailing" constant="20" id="aAa-kZ-EwS"/>
-                            <constraint firstItem="StN-lr-lAk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="24" id="aaH-IC-moV"/>
+                            <constraint firstItem="IaJ-9C-09h" firstAttribute="top" secondItem="StN-lr-lAk" secondAttribute="bottom" constant="-2" id="VcW-xe-CF8"/>
+                            <constraint firstAttribute="trailing" secondItem="StN-lr-lAk" secondAttribute="trailing" constant="22" id="aAa-kZ-EwS"/>
+                            <constraint firstItem="StN-lr-lAk" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="22" id="aaH-IC-moV"/>
                             <constraint firstItem="IaJ-9C-09h" firstAttribute="trailing" secondItem="aZm-K9-HSe" secondAttribute="trailing" id="b9W-IS-Aj4"/>
-                            <constraint firstItem="IaJ-9C-09h" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="24" id="jtF-DY-VPQ"/>
-                            <constraint firstItem="aZm-K9-HSe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="24" id="ka9-h1-yLW"/>
+                            <constraint firstItem="IaJ-9C-09h" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="22" id="jtF-DY-VPQ"/>
+                            <constraint firstItem="aZm-K9-HSe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="22" id="ka9-h1-yLW"/>
                             <constraint firstItem="Obz-RJ-50d" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ukf-sl-RcW"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Status Bar Message" id="TcK-3P-RBN"/>
+                    <navigationItem key="navigationItem" title="Sample" id="TcK-3P-RBN"/>
                     <connections>
                         <outlet property="messageField" destination="Obz-RJ-50d" id="Iqz-Jp-WcH"/>
                     </connections>

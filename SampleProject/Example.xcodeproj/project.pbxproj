@@ -15,8 +15,6 @@
 		0176092015F8D2C7007057D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176091F15F8D2C7007057D6 /* main.m */; };
 		0176092415F8D2C7007057D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092315F8D2C7007057D6 /* AppDelegate.m */; };
 		0176092715F8D2C7007057D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0176092615F8D2C7007057D6 /* ViewController.m */; };
-		125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C477B16022C8900E43D08 /* ViewController_iPad.xib */; };
-		125C478716024A0700E43D08 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 125C478516024A0700E43D08 /* ViewController.xib */; };
 		BB0AF15E1670121000FFEA63 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0AF15D1670121000FFEA63 /* Default-568h@2x.png */; };
 		DC7713371851E6AE009921A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC7713361851E6AE009921A4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -36,8 +34,6 @@
 		0176092315F8D2C7007057D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0176092515F8D2C7007057D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0176092615F8D2C7007057D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		125C477C16022C8900E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		125C478616024A0700E43D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		BB0AF15D1670121000FFEA63 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC7713361851E6AE009921A4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +97,6 @@
 				0176092515F8D2C7007057D6 /* ViewController.h */,
 				0176092615F8D2C7007057D6 /* ViewController.m */,
 				DC7713361851E6AE009921A4 /* Main.storyboard */,
-				125C478516024A0700E43D08 /* ViewController.xib */,
-				125C477B16022C8900E43D08 /* ViewController_iPad.xib */,
 				0130749E160321D40097FAC2 /* FDStatusBarNotifierView */,
 				0176091A15F8D2C7007057D6 /* Supporting Files */,
 			);
@@ -147,7 +141,7 @@
 		0176090615F8D2C7007057D6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Francesco Di Lorenzo";
 			};
 			buildConfigurationList = 0176090915F8D2C7007057D6 /* Build configuration list for PBXProject "Example" */;
@@ -174,8 +168,6 @@
 			files = (
 				0176091E15F8D2C7007057D6 /* InfoPlist.strings in Resources */,
 				DC7713371851E6AE009921A4 /* Main.storyboard in Resources */,
-				125C477D16022C8900E43D08 /* ViewController_iPad.xib in Resources */,
-				125C478716024A0700E43D08 /* ViewController.xib in Resources */,
 				BB0AF15E1670121000FFEA63 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,22 +197,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		125C477B16022C8900E43D08 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				125C477C16022C8900E43D08 /* en */,
-			);
-			name = ViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-		125C478516024A0700E43D08 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				125C478616024A0700E43D08 /* en */,
-			);
-			name = ViewController.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -228,9 +204,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -243,10 +223,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -255,16 +239,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
