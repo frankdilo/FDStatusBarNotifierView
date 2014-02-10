@@ -22,7 +22,6 @@ extern NSTimeInterval const kTimeOnScreen;
 
 @property id<FDStatusBarNotifierViewDelegate> delegate;
 
-
 - (id)initWithMessage:(NSString *)message;
 - (id)initWithMessage:(NSString *)message delegate:(id <FDStatusBarNotifierViewDelegate>)delegate;
 

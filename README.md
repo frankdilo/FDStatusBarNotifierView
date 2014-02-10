@@ -10,6 +10,10 @@ It’s as easy to use as `UIAlertView`, here is an example:
 	FDStatusBarNotifierView *notifierView = [[FDStatusBarNotifierView alloc] initWithMessage:@"Hello!"];
 	notifierView.timeOnScreen = 3.0; // by default it's 2 seconds
 	[notifierView showInWindow:self.view.window];
+	
+	// or from a view controller with a navigation bar
+	[notifierView showAboveNavigationController:self.navigationController];
+
 
 
 When you call `showInWindow:` the status bar disappear and the notifier view takes its place with a smooth animation.
