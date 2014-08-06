@@ -24,8 +24,21 @@ NSTimeInterval const kTimeOnScreen = 2.0;
 
 - (id)init
 {
+    return [self initWithMessage:nil delegate:nil];
+}
+
+- (id)initWithMessage:(NSString *)message
+{
+    return [self initWithMessage:message delegate:nil];
+}
+
+- (id)initWithMessage:(NSString *)message delegate:(id<FDStatusBarNotifierViewDelegate>)delegate
+{
     self = [super init];
     if (self) {
+        self.delegate           = delegate;
+        self.message            = message;
+        
         self.clipsToBounds = YES;
         self.frame = CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 20);
         
@@ -40,32 +53,14 @@ NSTimeInterval const kTimeOnScreen = 2.0;
         self.messageLabel.textAlignment = NSTextAlignmentCenter;
         self.messageLabel.font = [UIFont boldSystemFontOfSize:12];
         self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        self.messageLabel.text  = message;
+        
         self.shouldHideOnTap = NO;
         self.manuallyHide = NO;
         [self addSubview:self.messageLabel];
         
         self.timeOnScreen = kTimeOnScreen;
-    }
-    return self;
-}
-
-- (id)initWithMessage:(NSString *)message
-{
-    self = [self initWithMessage:message delegate:nil];
-    if (self) {
-        
-    }
-    return self;
-    
-}
-
-- (id)initWithMessage:(NSString *)message delegate:(id<FDStatusBarNotifierViewDelegate>)delegate
-{
-    self = [self init];
-    if (self) {
-        self.delegate           = delegate;
-        self.message            = message;
-        self.messageLabel.text  = message;
     }
     return self;
 }
