@@ -1,6 +1,6 @@
 **FDStatusBarNotifierView** is a view that lets you display notifications and messages using the space in which the status bar resides.
 
-![](http://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
+![Screenshot](https://github.com/frankdilo/FDStatusBarNotifierView/raw/master/Screenshot.png)
 
 # Usage
 
